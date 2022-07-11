@@ -18,6 +18,7 @@
 /* calculator result */
 #result-text {
   resize: none;
+  word-wrap: normal;
   width: 360px;
   margin: 1px;
   height: 48px;
