@@ -4,16 +4,23 @@ import React from 'react';
 
 function ToDoList({ todoList }) {
 
-  {/* map each to-do to a list item */}
-  let todoListItems = todoList.map((item, index) => {
-    return <li key={index}>{item}</li>
-  });
-
-  return(
+  return (
     <div>
-      <ul>
-        {todoListItems}
-      </ul>
+      { //list is empty
+        (todoList === '') ? <div><br />You don't have any tasks, yet.</div> :
+
+        //list is full
+        <div>
+          <ul>
+              {
+                //map each to-do to a list item
+                todoList.map(
+                  (item, index) => (<li key={index}> {todoList[index].todo} </li>)
+                )
+              }
+          </ul>
+        </div>
+      }
     </div>
   );
 }
