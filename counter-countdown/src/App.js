@@ -1,3 +1,5 @@
+/* Created by gparap (c) 2024 */
+
 import logo from './logo.png';
 import './App.css';
 import { useState } from 'react';
@@ -68,8 +70,56 @@ function App() {
 
   //start the timer
   const start = () => {
-    //TODO: countdown
+    let isCountDownOver = false; // countdown alert flag
+    console.log("countdown started...");
+    const interval = setInterval(() => {
+      setSeconds(prevSeconds => {
+        if (prevSeconds > 0) {
+          return prevSeconds - 1;
+        } else if (minutes > 0) {
+          setMinutes(prevMinutes => {
+            if (prevMinutes > 0) {
+              return prevMinutes - 1;
+            } else if (hours > 0) {
+              setHours(prevHours => {
+                if (prevHours > 0) {
+                  return prevHours - 1;
+                } else {
+                  stop(interval, isCountDownOver);
+                }
+              });
+              return 59;
+            } else {
+              stop(interval, isCountDownOver);
+            }
+          });
+          return 59;
+        } else if (hours > 0) {
+          setHours(prevHours => {
+            if (prevHours > 0) {
+              return prevHours - 1;
+            } else {
+              stop(interval, isCountDownOver);
+            }
+          });
+          return 59;
+        } else {
+          stop(interval, isCountDownOver);
+        }
+      });
+    }, 1000);
   };
+
+  //stop the timer (cancel the Timeout object)
+  const stop = (interval, isCountDownOver) => {
+    clearInterval(interval);
+          if (!isCountDownOver){
+            console.log("countdown stopped...");
+            alert("Countdown is over!");
+            isCountDownOver = true;
+          }
+          return 0;
+  }
 
   return (
     <div className="App">
