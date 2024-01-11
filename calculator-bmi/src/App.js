@@ -1,7 +1,16 @@
+/* Created by gparap (c) 2024 */
+
 import logo from './logo.png';
 import './App.css';
+import Bmi from './Bmi';
 
 function App() {
+
+  //deconstruct bmi properties
+  const { 
+    height, weight, bmi, UpdateHeightState, UpdateWeightState, Calculate, 
+  } = Bmi();
+
   return (
     <div className="App">
       <div className="container text-center">
@@ -18,23 +27,23 @@ function App() {
           {/* height */}
           <div>
             <label htmlFor="height">Enter height (cm)</label>
-            <input id="height" type="number" />
+            <input id="height" type="number" value={height} onChange={UpdateHeightState} />
           </div>
 
           {/* weight */}
           <div>
             <label htmlFor="weight">Enter weight (kg)</label>
-            <input id="weight" type="number" />
+            <input id="weight" type="number" value={weight} onChange={UpdateWeightState} />
           </div>
 
           {/* calculate */}
           <div>
-            <button className="btn btn-dark">Calculate</button>
+            <button className="btn btn-dark" onClick={Calculate}>Calculate</button>
           </div>
 
           {/* result */}
-          <div>
-            <p id="result"></p>
+          <div className="p-2">
+            <p id="result">Your BMI is: <strong>{bmi.toFixed(1)}</strong></p>
           </div>
 
           {/* categories */}
