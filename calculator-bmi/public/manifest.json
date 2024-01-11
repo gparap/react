@@ -1,0 +1,15 @@
+{
+  "short_name": "BMI Calculator",
+  "name": "BMI Calculator React App",
+  "icons": [
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "300x300"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
