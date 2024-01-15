@@ -1,0 +1,24 @@
+/* Created by gparap (c) 2024 */
+
+body {
+    color: black;
+}
+
+label, input {
+    margin-top: 16px;
+}
+
+button {
+    font-size: larger;
+    margin-top: 32px;
+}
+
+#results {
+    margin-top: 16px;
+}
+
+.div-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
