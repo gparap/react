@@ -1,10 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import NavBar from './components/NavBar';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './routes/Home'
+import About from './routes/About'
+import Contact from './routes/Contact'
+import Footer from './components/Footer';
 
 function App() {
   return (
     <div className="App">
-      Website Template with React
+      <BrowserRouter>
+        <NavBar />
+        <br />
+        <Routes>
+          <Route path='/' exact element={<Home />} />
+          <Route path='/Home' exact element={<Home />} />
+          <Route path='/About' exact element={<About />} />
+          <Route path='/Contact' exact element={<Contact />}/>
+        </Routes>
+        <br />
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }
