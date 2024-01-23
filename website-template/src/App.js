@@ -1,4 +1,4 @@
-/* (c) 2022 gparap */
+/* (c) 2024 gparap */
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
