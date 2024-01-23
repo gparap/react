@@ -1,6 +1,7 @@
+/* (c) 2022 gparap */
 import './App.css';
-import NavBar from './components/NavBar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import NavBar from './components/NavBar';
 import Home from './routes/Home'
 import About from './routes/About'
 import Contact from './routes/Contact'
@@ -16,7 +17,7 @@ function App() {
           <Route path='/' exact element={<Home />} />
           <Route path='/Home' exact element={<Home />} />
           <Route path='/About' exact element={<About />} />
-          <Route path='/Contact' exact element={<Contact />}/>
+          <Route path='/Contact' exact element={<Contact />} />
         </Routes>
         <br />
         <Footer />
