@@ -48,6 +48,16 @@
   margin: 4rem 0 2rem 0;
 }
 
+/* Contact page's label */
+.contact-header {
+  margin: 0 0 4rem 0;
+}
+
+/* Contact page's map */
+.contact-map {
+  margin: 4rem 0 0 0;
+}
+
 .footer {
   position: relative;
   padding: 0.5rem;
