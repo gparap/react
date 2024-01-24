@@ -38,6 +38,16 @@
   color: #fff;
 }
 
+/* About page's testimonial content */
+.container-testimonials {
+  margin: 4rem 0 2rem 0;
+}
+
+/* About page's testimonial label */
+.container-testimonials h1 {
+  margin: 4rem 0 2rem 0;
+}
+
 .footer {
   position: relative;
   padding: 0.5rem;
