@@ -6,19 +6,19 @@
 /* Navigation items' style for smaller screens */
 @media (max-width: 768px) {
   .nav-item-custom {
-      padding: 0.5rem 0 0 0.5rem;
-      text-align: start;
+    padding: 0.5rem 0 0 0.5rem;
+    text-align: start;
   }
 }
+
 /* Home page's container */
 .container-home {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
-  z-index: -1; /* Place the video behind navigation */
 }
 
 /* Video inside home page's container */
@@ -60,11 +60,30 @@
 
 .footer {
   position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   padding: 0.5rem;
-  background-color: lightgray;
+  background-color: #d3d3d3;
   color: #000;
   text-align: center;
   font-style: italic;
   font-size: smaller;
-  z-index: -10; /* Place the footer behind other content */
+}
+
+.footer h3 {
+  font-style: normal;
+  margin-top: 0.5rem;
+}
+
+/* Footer's container of font awesome social icons */
+.footer-container-social {
+  display: flex;
+  justify-content: center;
+}
+
+/* Font awesome social icons */
+.social-icon {
+  margin: 0.5rem;
+  font-size: larger;
 }
