@@ -10,12 +10,12 @@ import Image_06 from '../assets/images/img_06.jpg';
 function Carousel() {
     //array containing all images
     const images = [
-        { index: 0, src: Image_01 },
-        { index: 1, src: Image_02 },
-        { index: 2, src: Image_03 },
-        { index: 3, src: Image_04 },
-        { index: 4, src: Image_05 },
-        { index: 5, src: Image_06 }
+        { index: 0, src: Image_01, name:"img_01.jpg" },
+        { index: 1, src: Image_02, name:"img_02.jpg" },
+        { index: 2, src: Image_03, name:"img_03.jpg" },
+        { index: 3, src: Image_04, name:"img_04.jpg" },
+        { index: 4, src: Image_05, name:"img_05.jpg" },
+        { index: 5, src: Image_06, name:"img_06.jpg" }
     ];
 
     //current image index state
@@ -25,7 +25,7 @@ function Carousel() {
     function getPreviousImageIndex() {
         if (currentImageIndex > 0) {
             setcurrentImageIndex(currentImageIndex - 1);
-        } 
+        }
     }
 
     //returns the next image's index
@@ -46,10 +46,14 @@ function Carousel() {
                 <div className="carousel-inner">
                     <div className="carousel-item active">
                         <img src={getImageByIndex(currentImageIndex).src} className="d-block w-100" alt="..." />
+                        <div class="carousel-caption d-block d-md-block">
+                            <h5>{currentImageIndex + 1} of {images.length}</h5>
+                            <p style={{ fontStyle: 'italic' }}>image: {getImageByIndex(currentImageIndex).name}</p>
+                        </div>
                     </div>
                 </div>
-                <button onClick={getPreviousImageIndex} 
-                className="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                <button onClick={getPreviousImageIndex}
+                    className="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span className="visually-hidden">Previous</span>
                 </button>
