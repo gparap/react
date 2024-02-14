@@ -1,6 +1,6 @@
 {
-  "short_name": "Website Template",
-  "name": "Website Template React App",
+  "short_name": "Recipes",
+  "name": "Recipes",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
