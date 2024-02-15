@@ -47,20 +47,39 @@ function App() {
     setRecipeData(null);
   }
 
-  //Handle selected recipe data state
+  //handle selected recipe data state
   const [recipeData, setRecipeData] = useState(null);
+
+  //Handle the selected recipe category state
+  const [recipeCategory, setRecipeCategory] = useState('all');
+  function setCategoryFilter(category) {
+    setRecipeCategory(category);
+  }
 
   return (
     <div className="App">
-      <Navigation />
+      <Navigation setCategoryFilter={setCategoryFilter} />
       <Search />
+
       {/* Recipes Container */}
       <div className="row mt-2" id="container-recipes">
-        {recipes.map(recipe => (
-          <Recipe id={recipe.id} image={recipe.image} title={recipe.title} description={recipe.description}
-            openModal={openModal} />
-        ))}
+        {
+          //filter recipes based on their category
+          recipes.filter(recipe => {
+            if (recipeCategory.toLowerCase() !== 'all') {
+              return recipe.category.toLowerCase().includes(recipeCategory.toLowerCase())
+            }
+            //do not filter the 'all' category
+            return true;
+
+            //display the filtered recipes
+          }).map(recipe => (
+            <Recipe id={recipe.id} image={recipe.image} title={recipe.title} description={recipe.description}
+              openModal={openModal} category={recipe.category} />
+          ))
+        }
       </div>
+
       {/* Recipes Modal */}
       <Modal isModalOpen={isModalOpen} closeModal={closemodal} recipeData={recipeData} />
     </div>
