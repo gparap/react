@@ -18,13 +18,20 @@ function Modal({ isModalOpen, closeModal, recipeData }) {
                             <div className="modal-body">
                                 {/* Recipe Image */}
                                 <img className="card-img-top w-100 d-block" src={recipeData.image} id="modalRecipeImage" alt="" />
-                                {/* Recipe Details TODO: fix details (beautify) */}
+                                {/* Recipe Details */}
+                                <br />
                                 <p><b>Description:</b></p>
                                 <p>{recipeData.description}</p>
+                                <br />
                                 <p><b>Ingredients:</b></p>
-                                <p>{recipeData.ingredients}</p>
+                                {recipeData.ingredients.map(ingredient => (
+                                    <p>{ingredient}</p>
+                                ))}
+                                <br />
                                 <p><b>Instructions:</b></p>
-                                <p>{recipeData.instructions}</p>
+                                {recipeData.instructions.map((instruction, index) => (
+                                    <p key={index}>{index + 1}. {instruction}</p>
+                                ))}
                             </div>
                             <div className="modal-footer">
                                 <button onClick={closeModal} type="button" className="btn btn-dark">Close Recipe</button>
