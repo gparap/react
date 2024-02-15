@@ -3,7 +3,7 @@ import React from 'react'
 import Logo from '../assets/logo.png';
 
 // Navigation component that will behave like a filter
-function Navigation() {
+function Navigation({ setCategoryFilter }) {
     return (
         <nav className="navbar navbar-expand-md bg-body" data-bs-theme="dark">
             <div className="container-fluid">
@@ -19,17 +19,17 @@ function Navigation() {
                 </button>
                 <div className="collapse navbar-collapse" id="navcol-1">
                     <ul className="navbar-nav">
-                        <li className="nav-item"><button className="nav-link active">All</button></li>
-                        <li className="nav-item"><button className="nav-link active">Featured</button></li>
-                        <li className="nav-item"><button className="nav-link active">Recent</button></li>
+                        <li className="nav-item"><button onClick={() => setCategoryFilter('all')} className="nav-link active">All</button></li>
+                        <li className="nav-item"><button onClick={() => setCategoryFilter('featured')} className="nav-link active">Featured</button></li>
+                        <li className="nav-item"><button onClick={() => setCategoryFilter('recent')} className="nav-link active">Recent</button></li>
                         {/* Recipe Categories List */}
                         <li className="nav-item dropdown">
                             <button className="nav-link dropdown-toggle active" data-bs-toggle="dropdown" aria-expanded="false">Categories
                             </button>
                             <div className="dropdown-menu">
-                                <button className="dropdown-item">Meat</button>
-                                <button className="dropdown-item">Pasta</button>
-                                <button className="dropdown-item">Salad</button>
+                                <button onClick={() => setCategoryFilter('meat')} className="dropdown-item">Meat</button>
+                                <button onClick={() => setCategoryFilter('pasta')} className="dropdown-item">Pasta</button>
+                                <button onClick={() => setCategoryFilter('salad')} className="dropdown-item">Salad</button>
                             </div>
                         </li>
                     </ul>
