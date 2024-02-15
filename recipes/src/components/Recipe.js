@@ -2,7 +2,7 @@
 import React from 'react'
 import '../styles/recipe.css'
 
-function Recipe({ id, image, title, description }) {
+function Recipe({ id, image, title, description, openModal }) {
     return (
         <div className="col-md-4" id={id}>
             <div className="card">
@@ -12,7 +12,7 @@ function Recipe({ id, image, title, description }) {
                         <p>{title}</p>
                     </h4>
                     <p className="card-text">{description}</p>
-                    <button className="btn btn-dark">View Recipe</button>
+                    <button onClick={() => openModal(id)} className="btn btn-dark">View Recipe</button>
                 </div>
             </div>
         </div>
