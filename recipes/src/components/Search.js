@@ -2,13 +2,13 @@
 import React from 'react'
 
 // Search input for recipes & ingredients
-function Search() {
+function Search({ searchTerm, updateSearchTerm, handleSearchClick }) {
     return (
         <div className="row">
             <div className="col-md-12">
                 <div className="input-group mt-2">
-                    <input type="text" className="form-control" placeholder="Search Recipe or Ingredient" id="search-recipe" name="search-recipe" />
-                    <button className="btn btn-outline-secondary" type="button">
+                    <input onChange={updateSearchTerm} value={searchTerm} type="text" className="form-control" placeholder="Search Recipe or Ingredient" id="search-recipe" name="search-recipe" />
+                    <button onClick={handleSearchClick} className="btn btn-outline-secondary" type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                             viewBox="0 0 16 16" className="bi bi-search">
                             <path

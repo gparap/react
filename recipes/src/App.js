@@ -54,29 +54,51 @@ function App() {
   const [recipeCategory, setRecipeCategory] = useState('all');
   function setCategoryFilter(category) {
     setRecipeCategory(category);
+    setSearchEnabled(false);  //!!! we don't need the search anymore
   }
+
+  //Handle the search state
+  const [searchTerm, setSearchTerm] = useState("");
+  function updateSearchTerm(event) {
+    setSearchTerm(event.target.value);
+  }
+
+  //Handle the search click state
+  const [isSearchEnabled, setSearchEnabled] = useState(false);
+  const handleSearchClick = () => {
+    setSearchEnabled(true);
+  };
 
   return (
     <div className="App">
       <Navigation setCategoryFilter={setCategoryFilter} />
-      <Search />
+      <Search searchTerm={searchTerm} updateSearchTerm={updateSearchTerm} handleSearchClick={handleSearchClick} />
 
       {/* Recipes Container */}
       <div className="row mt-2" id="container-recipes">
         {
-          //filter recipes based on their category
-          recipes.filter(recipe => {
-            if (recipeCategory.toLowerCase() !== 'all') {
-              return recipe.category.toLowerCase().includes(recipeCategory.toLowerCase())
-            }
-            //do not filter the 'all' category
-            return true;
+          (
+            isSearchEnabled
 
+              ? //filter recipes based on their title or ingredients
+              recipes.filter(recipe =>
+                recipe.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                recipe.ingredients.some(ingredient => ingredient.toLowerCase().includes(searchTerm.toLowerCase())))
+
+              : //filter recipes based on their category
+              recipes.filter(recipe => {
+                if (recipeCategory.toLowerCase() !== 'all') {
+                  return recipe.category.toLowerCase().includes(recipeCategory.toLowerCase())
+                }
+                //do not filter the 'all' category
+                return true;
+              })
+          )
             //display the filtered recipes
-          }).map(recipe => (
-            <Recipe id={recipe.id} image={recipe.image} title={recipe.title} description={recipe.description}
-              openModal={openModal} category={recipe.category} />
-          ))
+            .map(recipe => (
+              <Recipe id={recipe.id} image={recipe.image} title={recipe.title} description={recipe.description}
+                openModal={openModal} category={recipe.category} />
+            ))
         }
       </div>
 
