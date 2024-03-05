@@ -1,0 +1,48 @@
+/* © 2024 gparap */
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 16vmin;
+  pointer-events: none;
+  margin: 1rem;
+  ;
+}
+
+.App-header {
+  background-color: darkgray;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(1rem + 1vmin);
+  color: white;
+}
+
+.App-quote-container {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: auto;
+  min-height: 20vh;
+  background-color: lightgray;
+}
+
+.App-quote-button {
+  margin-bottom: 0.16rem;
+  padding: 0.75rem;
+  font-size: calc(0.75rem + 0.75vmin);
+  background-color: darkgray;
+  color: white;
+  border: none;
+  border-radius: 0.64rem;
+  cursor: pointer;
+}
+
+.App-quote-button:hover {
+  color: darkblue;
+}
