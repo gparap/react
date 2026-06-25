@@ -3,6 +3,13 @@
 import React, { useEffect, useState } from 'react'
 import '../App.css'
 import logo from '../logo.png';
+import cloudy from '../assets/cloudy.png'
+import drizzle from '../assets/drizzle.png'
+import fog from '../assets/fog.png'
+import rain from '../assets/rain.png'
+import snow from '../assets/snow.png'
+import storm from '../assets/storm.png'
+import sun from '../assets/sun.png'
 
 const Weather = () => {
     let api_key = "YOUR_API_KEY_HERE"
@@ -10,6 +17,7 @@ const Weather = () => {
 
     const [weatherApiData, setWeatherApiData] = useState(null);
     const [cityInputData, setCityInputData] = useState("");
+    const [imageData, setImageData] = useState("");
 
     const fetchWeather = async (city) => {
         try {
@@ -40,17 +48,51 @@ const Weather = () => {
         fetchWeather(city);
     }
 
+    //Runs every time weatherApiData changes to update the image
+    useEffect(() => {
+        //stop if data missing or weather array is empty
+        if (!weatherApiData) return;
+        if (!weatherApiData?.weather?.length) return;
+
+        //set image
+        const weatherMain = weatherApiData?.weather?.[0]?.main.toLowerCase() || "";
+        switch (true) {
+            case weatherMain.includes("cloud"):
+                setImageData(cloudy);
+                break;
+            case weatherMain.includes("drizzle"):
+                setImageData(drizzle);
+                break;
+            case weatherMain.includes("rain"):
+                setImageData(rain);
+                break;
+            case weatherMain.includes("snow"):
+                setImageData(snow);
+                break;
+            case weatherMain.includes("storm"):
+                setImageData(storm);
+                break;
+            case weatherMain.includes("clear"):
+                setImageData(sun);
+                break;
+            default:
+                setImageData(fog);
+        }
+    }, [weatherApiData]);
+
+    //
     //TODO: convert fahrenheit to celcious using formula: Celsius = (Fahrenheit - 32) / 1.8
+    //
 
     return (
-        <div className='container'>
+        <div className='container' style={{ height: "auto", paddingBottom: "1rem" }}>
             {/* Search Input */}
             <input className='mt-2' type='text' placeholder='City Name' onChange={handleCityInputData} />
             <button className='btn btn-primary ms-2' type='button' onClick={() => { searchCityWeather(cityInputData) }}><i className='bi bi-search'></i></button>
             {/* Weather Result */}
             <div className=''>Weather</div>
             <div className='card'>
-                <img src={logo} className='card-img-top w-25 mx-auto d-block' alt='weather icon' />
+                <img src={imageData || logo} className='card-img-top w-25 mx-auto d-block' alt='weather icon' />
                 <div className='card-body'>
                     <p className='card-text'>Weather:&nbsp;{weatherApiData?.weather[0]?.main || "Loading ..."}</p>
                     <p className='card-text'>Description:&nbsp;{weatherApiData?.weather[0]?.description || "Loading..."}</p>
