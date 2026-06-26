@@ -80,9 +80,27 @@ const Weather = () => {
         }
     }, [weatherApiData]);
 
-    //
-    //TODO: convert fahrenheit to celcious using formula: Celsius = (Fahrenheit - 32) / 1.8
-    //
+    const convertFahrenheitToCelcius = (fahrenheit) => {
+        let celcius = 0;
+        if (fahrenheit !== null && fahrenheit !== "undefined") {
+            celcius = (fahrenheit - 32) / 1.8;
+            celcius = Math.round(celcius);
+        }
+        return celcius;
+    }
+
+    const displayTemperature = () => {
+        //get the user's locale to determine if we need °F or °C
+        const locale = navigator.language;
+
+        //hadle temperature display
+        let temp = weatherApiData?.main?.temp;
+        if (locale.includes("US")) {
+            return isNaN(temp) ? "Loading..." : temp + "\u00B0F";
+        } else {
+            return isNaN(temp) ? "Loading..." : convertFahrenheitToCelcius(weatherApiData?.main?.temp) + "\u00B0C";
+        }
+    };
 
     return (
         <div className='container' style={{ height: "auto", paddingBottom: "1rem" }}>
@@ -99,7 +117,7 @@ const Weather = () => {
 
                     <div className='d-flex justify-content-center align-items-center'>
                         <i className="bi bi-thermometer-half"></i>&nbsp;
-                        <p className='card-text'>Temprature:&nbsp;{weatherApiData?.main?.temp || "Loading..."}&nbsp;&deg;F</p>
+                        <p className='card-text'>Temprature:&nbsp;{ displayTemperature() }</p>
                     </div>
                     <p />
                     <div className='d-flex justify-content-center align-items-center'>
